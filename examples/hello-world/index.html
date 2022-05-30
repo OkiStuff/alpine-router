@@ -2,22 +2,24 @@
 <html lang="en">
 <head>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="//raw.githubusercontent.com/OkiStuff/alpine-router/main/alpine-router.js" defer></script>
+    <script type="module" src="../../alpine-router.mjs" defer></script>
 
-    <div x-html="router.getCurrentHead()"></div>
-</head>
-<body>
-    <h1>Welcome to my page!</h1>
-    <div x-html="router.getCurrentBody()"></div>
+    <script type="module">
+        import { AlpineRouter } from "../../alpine-router.mjs";
 
-    <script>
-        let router = AlpineRouter();
-        router.route("/", "home");
+        let router = new AlpineRouter();
+        router.route("/examples/hello-world", "home");
         router.route("/final", "final");
 
         document.addEventListener('alpine:init', () => {
             Alpine.store('globalRouter', router)
         })
     </script>
+
+    <div x-html="router.getCurrentHead()"></div>
+</head>
+<body>
+    <h1>Welcome to my page!</h1>
+    <div x-html="$state.globalRouter.getCurrentBody()"></div>
 </body>
 </html>
