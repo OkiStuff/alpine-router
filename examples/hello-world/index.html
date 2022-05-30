@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <div x-html="router.getCurrentHead()"></div>
+</head>
+<body>
+    <h1>Welcome to my page!</h1>
+    <div x-html="router.getCurrentBody()"></div>
+
+    <script>
+        let router = AlpineRouter();
+        router.route("/", "home");
+        router.route("/final", "final");
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('globalRouter', router)
+        })
+    </script>
+</body>
+</html>
